@@ -1,0 +1,44 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+*.egg
+
+# Virtual environments
+.venv
+venv/
+
+# Secrets
+.env
+.env.local
+*.pem
+
+# Data & artifacts
+data/**
+!data/dumps/
+data/dumps/**
+!data/dumps/.gitkeep
+!data/dumps/README.md
+mlruns/
+mlartifacts/
+.dvc/
+.dvcignore
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+*.swp
+
+# Testing / coverage
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Alembic (local)
+*.db

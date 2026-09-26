@@ -1,0 +1,40 @@
+services:
+  postgres-erp:
+    image: postgres:16-alpine
+    container_name: ml_pdv_postgres_erp
+    environment:
+      POSTGRES_USER: erp
+      POSTGRES_PASSWORD: erp
+      POSTGRES_DB: pdv_prod
+    ports:
+      # 5434 avoids clash with a host Postgres already on 5432
+      - "5434:5432"
+    volumes:
+      - postgres_erp_data:/var/lib/postgresql/data
+      - ./data/dumps:/dumps:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U erp -d postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  postgres-ml:
+    image: postgres:16-alpine
+    container_name: ml_pdv_postgres_ml
+    environment:
+      POSTGRES_USER: ml
+      POSTGRES_PASSWORD: ml
+      POSTGRES_DB: ml_pdv
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_ml_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ml -d ml_pdv"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres_erp_data:
+  postgres_ml_data:

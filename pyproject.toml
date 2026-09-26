@@ -1,0 +1,61 @@
+[project]
+name = "ml-pdv"
+version = "0.1.0"
+description = "ML platform for demand forecasting and related models on ERP sales data"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn[standard]>=0.32.0",
+    "pydantic>=2.9.0",
+    "pydantic-settings>=2.6.0",
+    "sqlalchemy>=2.0.36",
+    "psycopg[binary]>=3.2.0",
+    "alembic>=1.14.0",
+    "polars>=1.14.0",
+    "pandas>=2.2.0",
+    "numpy>=2.1.0",
+    "scikit-learn>=1.5.0",
+    "xgboost>=2.1.0",
+    "httpx>=0.28.0",
+    "python-dotenv>=1.0.0",
+    "structlog>=24.4.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.24.0",
+    "ruff>=0.8.0",
+    "black>=24.10.0",
+    "mypy>=1.13.0",
+]
+
+[project.scripts]
+ml-pdv = "ml_pdv.cli:main"
+introspect-erp = "ml_pdv.scripts.introspect_erp:main"
+restore-erp-dump = "ml_pdv.scripts.restore_erp_dump:main"
+
+[build-system]
+requires = ["uv_build>=0.12.15,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.mypy]
+python_version = "3.12"
+strict = false
+ignore_missing_imports = true
