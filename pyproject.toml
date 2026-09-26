@@ -35,6 +35,7 @@ dev = [
 ml-pdv = "ml_pdv.cli:main"
 introspect-erp = "ml_pdv.scripts.introspect_erp:main"
 restore-erp-dump = "ml_pdv.scripts.restore_erp_dump:main"
+train-demand = "ml_pdv.training.pipeline:main"
 
 [build-system]
 requires = ["uv_build>=0.12.15,<0.13.0"]

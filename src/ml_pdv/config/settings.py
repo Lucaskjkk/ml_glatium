@@ -45,15 +45,19 @@ class Settings(BaseSettings):
 
     model_name: str = "demand_forecasting"
     prediction_horizon_days: int = 7
+    model_artifact_path: Path = Field(
+        default=Path("artifacts/training/production_candidate.joblib"),
+        description="Local production model artifact loaded by the Prediction API.",
+    )
 
     sync_interval_minutes: int = 5
     training_schedule_cron: str = "0 3 * * 0"
 
     log_level: str = "INFO"
 
-    @field_validator("erp_dump_path", mode="before")
+    @field_validator("erp_dump_path", "model_artifact_path", mode="before")
     @classmethod
-    def _expand_dump_path(cls, value: object) -> Path:
+    def _expand_path(cls, value: object) -> Path:
         return Path(str(value)).expanduser()
 
 

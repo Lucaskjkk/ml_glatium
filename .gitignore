@@ -22,6 +22,7 @@ data/**
 data/dumps/**
 !data/dumps/.gitkeep
 !data/dumps/README.md
+artifacts/
 mlruns/
 mlartifacts/
 .dvc/

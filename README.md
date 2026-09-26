@@ -49,9 +49,14 @@ uv run restore-erp-dump
 # 3) Mapeie o schema
 uv run introspect-erp
 
-# 4) API
+# 4) Treine demanda (baseline + RF + XGBoost)
+uv run train-demand --tenant tenant_mrcoutinho
+
+# 5) API
 uv run uvicorn ml_pdv.api.app:app --host 0.0.0.0 --port 8000 --reload
 ```
+
+Walkthrough do treino: [docs/training-walkthrough.md](docs/training-walkthrough.md)
 
 - Health: http://localhost:8000/health  
 - OpenAPI: http://localhost:8000/docs  
