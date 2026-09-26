@@ -70,9 +70,11 @@ def metrics_table(results: list[ModelResult]) -> pd.DataFrame:
                 "valid_mae": r.metrics_valid["mae"],
                 "valid_rmse": r.metrics_valid["rmse"],
                 "valid_wape": r.metrics_valid["wape"],
+                "valid_medae": r.metrics_valid["medae"],
                 "test_mae": r.metrics_test["mae"],
                 "test_rmse": r.metrics_test["rmse"],
                 "test_wape": r.metrics_test["wape"],
+                "test_medae": r.metrics_test["medae"],
             }
         )
     return pd.DataFrame(rows).sort_values("valid_mae").reset_index(drop=True)
